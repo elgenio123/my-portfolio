@@ -50,7 +50,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, '#home')}
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
-            Genie Tchabet
+            MyPortfolio
           </a>
 
           <div className="hidden md:flex items-center space-x-8">

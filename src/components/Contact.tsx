@@ -60,7 +60,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <a
+            {/* <a
               href={`https://${contactInfo.website}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -75,7 +75,7 @@ export default function Contact() {
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">{contactInfo.website}</p>
               </div>
-            </a>
+            </a> */}
           </div>
 
           <div className="text-center">

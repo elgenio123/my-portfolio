@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { contactInfo } from '../data/portfolio';
+import profileImage from '../../assets/images/profile.jpeg';
 
 export default function Hero() {
   return (
@@ -53,20 +54,11 @@ export default function Hero() {
           <div className="flex-shrink-0">
             <div className="relative">
               <div className="w-72 h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-400 to-teal-500 p-1">
-                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
-                  <div className="text-6xl md:text-7xl text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-full h-full"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                    </svg>
-                  </div>
+                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                  <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <a
+              {/* <a
                 href={`https://${contactInfo.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -74,7 +66,7 @@ export default function Hero() {
               >
                 <ExternalLink className="w-4 h-4" />
                 <span className="text-sm font-medium">{contactInfo.website}</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
