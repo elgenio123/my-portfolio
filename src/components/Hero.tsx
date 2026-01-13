@@ -1,9 +1,13 @@
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { Github, Linkedin, Mail, X } from 'lucide-react';
 import { contactInfo } from '../data/portfolio';
 import profileImage from '../../assets/images/profile.jpeg';
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
+    <>
     <section
       id="home"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-16"
@@ -53,7 +57,10 @@ export default function Hero() {
 
           <div className="flex-shrink-0">
             <div className="relative">
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-400 to-teal-500 p-1">
+              <div 
+                className="w-72 h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-400 to-teal-500 p-1 cursor-pointer transform transition-transform duration-300 hover:scale-105"
+                onClick={() => setIsModalOpen(true)}
+              >
                 <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                   <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
                 </div>
@@ -72,5 +79,44 @@ export default function Hero() {
         </div>
       </div>
     </section>
+
+    {/* Image Modal */}
+    <div 
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
+        isModalOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+      }`}
+      onClick={() => setIsModalOpen(false)}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+      
+      {/* Modal Content */}
+      <div 
+        className={`relative transform transition-all duration-300 ${
+          isModalOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="absolute -top-4 -right-4 z-10 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+        >
+          <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+        </button>
+        
+        {/* Image Container */}
+        <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] rounded-2xl bg-gradient-to-br from-blue-400 to-teal-500 p-1 shadow-2xl">
+          <div className="w-full h-full rounded-2xl overflow-hidden bg-gray-200 dark:bg-gray-700">
+            <img 
+              src={profileImage} 
+              alt="Profile" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
   );
 }

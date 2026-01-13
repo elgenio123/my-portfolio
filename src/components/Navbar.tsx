@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import logoImage from '../../assets/images/logo.png';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -50,7 +51,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, '#home')}
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
-            <img src='/logo.png' alt="Logo" className="h-8 w-8 inline-block mr-2" />
+            <img src={logoImage} alt="Logo" className="h-14 w-14 inline-block mr-2" />
           </a>
 
           <div className="hidden md:flex items-center space-x-8">
