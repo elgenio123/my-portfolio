@@ -50,7 +50,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, '#home')}
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
-            MyPortfolio
+            <img src='/logo.png' alt="Logo" className="h-8 w-8 inline-block mr-2" />
           </a>
 
           <div className="hidden md:flex items-center space-x-8">

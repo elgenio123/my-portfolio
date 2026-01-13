@@ -20,7 +20,7 @@ export default function Hero() {
               AI Researcher · Software Developer
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-              Building intelligent, data-driven solutions for system security and automation.
+              Building intelligent, data-driven solutions for system security in IOT.
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <a
