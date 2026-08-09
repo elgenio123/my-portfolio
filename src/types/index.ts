@@ -26,9 +26,16 @@ export interface Project {
   technologies: string[];
 }
 
+export interface PhoneNumber {
+  /** Where the line is registered — shown as a badge beside the number. */
+  region: string;
+  number: string;
+}
+
 export interface ContactInfo {
   location: string;
-  phone: string;
+  /** First entry is treated as the primary line. */
+  phones: PhoneNumber[];
   email: string;
   website: string;
   github: string;

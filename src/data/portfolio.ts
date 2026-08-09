@@ -134,7 +134,10 @@ export const skills = {
 
 export const contactInfo: ContactInfo = {
   location: 'Kigali, Rwanda',
-  phone: '+237 691586487',
+  phones: [
+    { region: 'Rwanda', number: '+250 780189217' },
+    { region: 'Cameroon', number: '+237 691586487' },
+  ],
   email: 'genie.kamaha@aims-cameroon.org',
   website: 'genie-tchabet.online',
   github: 'https://github.com/elgenio123',

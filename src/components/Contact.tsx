@@ -1,6 +1,7 @@
 import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { contactInfo } from '../data/portfolio';
+import type { PhoneNumber } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 import Section from './ui/Section';
 import SectionHeading from './ui/SectionHeading';
@@ -72,6 +73,46 @@ function Channel({ icon: Icon, label, value, href, tone, copyable = false, delay
   );
 }
 
+/** `tel:` hrefs must not contain spaces, but the displayed number reads better with them. */
+const telHref = (number: string) => `tel:${number.replace(/\s+/g, '')}`;
+
+
+function PhoneChannel({ phones, delay }: { phones: PhoneNumber[]; delay: number }) {
+  return (
+    <Reveal delay={delay} className="flex">
+      <Card interactive spotlight className="flex w-full flex-col p-6">
+        <div className="flex items-start gap-4">
+          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/20 transition-transform duration-500 ease-spring group-hover:scale-105">
+            <Phone className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-subtle">
+              Phone
+            </p>
+            <ul className="mt-1.5 space-y-1.5">
+              {phones.map((phone) => (
+                <li key={phone.number} className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <a
+                    href={telHref(phone.number)}
+                    className="text-[0.9375rem] font-medium text-fg transition-colors duration-300 hover:text-brand"
+                  >
+                    {phone.number}
+                  </a>
+                  <span className="rounded-full border border-border bg-surface-muted px-2 py-0.5 text-[0.65rem] font-medium uppercase tracking-wide text-fg-subtle">
+                    {phone.region}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </Card>
+    </Reveal>
+  );
+}
+
 export default function Contact() {
   return (
     <Section id="contact" tone="muted">
@@ -92,15 +133,7 @@ export default function Contact() {
             copyable
             delay={0}
           />
-          <Channel
-            icon={Phone}
-            label="Phone"
-            value={contactInfo.phone}
-            href={`tel:${contactInfo.phone}`}
-            tone="bg-accent/10 text-accent ring-accent/20"
-            copyable
-            delay={90}
-          />
+          <PhoneChannel phones={contactInfo.phones} delay={90} />
           <Channel
             icon={MapPin}
             label="Location"
