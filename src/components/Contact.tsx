@@ -1,108 +1,166 @@
-import { Mail, Phone, MapPin, ExternalLink, Github, Linkedin } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { contactInfo } from '../data/portfolio';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import Section from './ui/Section';
+import SectionHeading from './ui/SectionHeading';
+import Card from './ui/Card';
+import Button from './ui/Button';
+import Reveal from './ui/Reveal';
+
+interface ChannelProps {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  href?: string;
+  tone: string;
+  copyable?: boolean;
+  delay: number;
+}
+
+function Channel({ icon: Icon, label, value, href, tone, copyable = false, delay }: ChannelProps) {
+  const { status, copy } = useCopyToClipboard();
+  const copied = status === 'copied';
+
+  return (
+    <Reveal delay={delay} className="flex">
+      <Card interactive spotlight className="flex w-full flex-col p-6">
+        <div className="flex items-start gap-4">
+          <span
+            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 transition-transform duration-500 ease-spring group-hover:scale-105 ${tone}`}
+          >
+            <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-subtle">
+              {label}
+            </p>
+            {href ? (
+              <a
+                href={href}
+                className="mt-1.5 inline-flex items-center gap-1 break-words text-[0.9375rem] font-medium text-fg transition-colors duration-300 hover:text-brand"
+              >
+                {value}
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </a>
+            ) : (
+              <p className="mt-1.5 break-words text-[0.9375rem] font-medium text-fg">{value}</p>
+            )}
+          </div>
+        </div>
+
+        {copyable && (
+          <div className="mt-5 border-t border-border pt-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              icon={copied ? Check : Copy}
+              loading={status === 'copying'}
+              onClick={() => copy(value)}
+              className={copied ? 'text-accent' : undefined}
+            >
+              {copied ? 'Copied' : status === 'error' ? 'Copy failed' : `Copy ${label.toLowerCase()}`}
+            </Button>
+            <span aria-live="polite" className="sr-only">
+              {copied ? `${label} copied to clipboard` : ''}
+            </span>
+          </div>
+        )}
+      </Card>
+    </Reveal>
+  );
+}
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In Touch
-          </h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, collaborations, or opportunities in AI
-            research and software development.
-          </p>
+    <Section id="contact" tone="muted">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Get In Touch"
+        description="I'm always open to discussing new projects, collaborations, or opportunities in AI research and software development."
+      />
+
+      <div className="mx-auto max-w-4xl">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Channel
+            icon={Mail}
+            label="Email"
+            value={contactInfo.email}
+            href={`mailto:${contactInfo.email}`}
+            tone="bg-brand/10 text-brand ring-brand/20"
+            copyable
+            delay={0}
+          />
+          <Channel
+            icon={Phone}
+            label="Phone"
+            value={contactInfo.phone}
+            href={`tel:${contactInfo.phone}`}
+            tone="bg-accent/10 text-accent ring-accent/20"
+            copyable
+            delay={90}
+          />
+          <Channel
+            icon={MapPin}
+            label="Location"
+            value={contactInfo.location}
+            tone="bg-emerald-500/10 text-emerald-500 ring-emerald-500/20"
+            delay={180}
+          />
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <a
-              href={`mailto:${contactInfo.email}`}
-              className="flex items-start gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
-            >
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                  Email
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{contactInfo.email}</p>
-              </div>
-            </a>
+        <Reveal delay={120} className="mt-12">
+          <Card className="relative overflow-hidden p-8 text-center sm:p-12">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand/[0.18] via-transparent to-accent/[0.18]"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-20 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand/30 blur-[90px]"
+            />
 
-            <a
-              href={`tel:${contactInfo.phone}`}
-              className="flex items-start gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
-            >
-              <div className="p-3 bg-teal-100 dark:bg-teal-900/30 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                <Phone className="w-6 h-6 text-teal-600 dark:text-teal-400" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                  Phone
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{contactInfo.phone}</p>
-              </div>
-            </a>
+            <div className="relative">
+              <h3 className="text-balance text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
+                Let's build something intelligent
+              </h3>
+              <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
+                Whether it's research collaboration, a data problem, or a product to ship - the
+                inbox is open.
+              </p>
 
-            <div className="flex items-start gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                <MapPin className="w-6 h-6 text-green-600 dark:text-green-400" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                  Location
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{contactInfo.location}</p>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Button href={`mailto:${contactInfo.email}`} icon={Mail} size="lg">
+                  Send an email
+                </Button>
+                <Button
+                  href={contactInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                  icon={Linkedin}
+                  iconRight={ArrowUpRight}
+                  size="lg"
+                >
+                  LinkedIn
+                </Button>
+                <Button
+                  href={contactInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                  icon={Github}
+                  iconRight={ArrowUpRight}
+                  size="lg"
+                >
+                  GitHub
+                </Button>
               </div>
             </div>
-
-            {/* <a
-              href={`https://${contactInfo.website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
-            >
-              <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                <ExternalLink className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                  Website
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{contactInfo.website}</p>
-              </div>
-            </a> */}
-          </div>
-
-          <div className="text-center">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-              Connect with me
-            </h3>
-            <div className="flex justify-center gap-4">
-              <a
-                href={contactInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              >
-                <Github className="w-8 h-8" />
-              </a>
-              <a
-                href={contactInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              >
-                <Linkedin className="w-8 h-8" />
-              </a>
-            </div>
-          </div>
-        </div>
+          </Card>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

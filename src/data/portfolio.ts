@@ -2,10 +2,20 @@ import { Experience, Education, Project, ContactInfo } from '../types';
 
 export const experience: Experience[] = [
   {
+    company: 'AIMS Research and Innovation Centre (RIC)',
+    location: 'Kigali, Rwanda',
+    position: 'Software Developer Intern',
+    period: 'Jul 2026 – Present',
+    arrangement: 'On-site',
+    description:
+      "Internship phase of the AIMS cooperative Master's in Data Science, building and maintaining software for research and innovation projects.",
+  },
+  {
     company: 'AFRICA SYSTEMS',
     location: 'New York, USA',
     position: 'Machine Learning Engineer',
     period: 'Aug 2024 – Jan 2025',
+    arrangement: 'Remote',
     description:
       'Contributed to developing a predictive model for vehicle parking behavior, involving data analysis, feature engineering, and ML-based anomaly detection.',
   },
@@ -14,6 +24,7 @@ export const experience: Experience[] = [
     location: 'Nashik, India',
     position: 'Machine Learning Engineer Intern',
     period: 'Dec 2023 – Jan 2024',
+    arrangement: 'Remote',
     description:
       'Developed regression and classification models using Decision Trees, Random Forests, and MLPs for applied ML tasks.',
   }, 
@@ -22,6 +33,7 @@ export const experience: Experience[] = [
     location: 'Dschang, Cameroon',
     position : 'Machine learning Trainer',
     period : 'Dec 2024 – Aug 2025',
+    arrangement: 'On-site',
     description :
       'Conducted training sessions on machine learning concepts, algorithms, and practical applications for aspiring data scientists and developers.',
   },
@@ -33,12 +45,17 @@ export const education: Education[] = [
     degree: "Cooperative Master's program in Data Science",
     period: '2025–2026',
     grade: 'in progress',
+    thesis:
+      'Towards Agentic and Statistically Grounded Automated Debugging of Machine Learning Models',
   },
   {
     institution: 'University of Dschang',
     degree: "Master's 2 in Fundamental Computer Science (AI)",
     period: '2024–2025',
     grade: 'B',
+    thesis:
+      'Dynamic Adversarial Modeling for Intrusion Detection in IoT Environments',
+  
   },
   {
     institution: 'University of Dschang',
@@ -55,6 +72,18 @@ export const education: Education[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: 'AIMS Cameroon RAG Assistant',
+    description:
+      'A retrieval-augmented generation system that answers questions about AIMS Cameroon, built on data scraped from the institute\'s official website.',
+    technologies: ['Python', 'RAG', 'LLMs', 'Web Scraping'],
+  },
+  {
+    title: 'Agentic Automated Debugging of ML Models',
+    description:
+      "Master's thesis at AIMS Cameroon: Towards Agentic and Statistically Grounded Automated Debugging of Machine Learning Models - pairing agentic workflows with statistical grounding to locate and explain model failures automatically.",
+    technologies: ['Python', 'Machine Learning', 'Agentic AI', 'Model Debugging'],
+  },
   {
     title: 'Dynamic Adversarial Modeling for IDS in IoT',
     description:
@@ -95,16 +124,16 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  programming: ['Python', 'JavaScript', 'Java', 'PHP', 'Ruby', 'Kotlin', 'R' ],
-  frameworks: ['NextJS', 'React', 'Spring', 'Laravel','React Native', 'Flask','Jekyll'],
-  tools: ['Git', 'AWS', 'Linux', 'CI/CD'],
-  databases: ['MySQL', 'PostgreSQL', 'MongoDB'],
-  areas: ['Machine Learning', 'AI', "Software Engineering", 'Data Analysis'],
+  programming: ['Python', 'JavaScript', 'Java', 'PHP', 'Ruby', 'Kotlin', 'R', 'C++', 'C', 'TypeScript', 'SQL'],
+  frameworks: ['NextJS', 'React', 'Spring', 'Laravel','React Native', 'Flask','Jekyll', 'NodeJS', 'TailwindCSS'],
+  tools: ['Git/GitHub', 'AWS', 'Linux', 'CI/CD'],
+  databases: ['MySQL', 'PostgreSQL', 'MongoDB', 'Firebase'],
+  areas: ['Agentic AI', 'LLMs', 'RAG', 'Machine Learning', "Software Engineering", 'Data Analysis'],
   languages: ['English', 'French'],
 };
 
 export const contactInfo: ContactInfo = {
-  location: 'Limbe, Cameroon',
+  location: 'Kigali, Rwanda',
   phone: '+237 691586487',
   email: 'genie.kamaha@aims-cameroon.org',
   website: 'genie-tchabet.online',

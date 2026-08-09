@@ -7,19 +7,31 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="relative min-h-screen bg-bg text-fg">
+      <a href="#about" className="skip-link">
+        Skip to content
+      </a>
+
+      <ScrollProgress />
       <Navbar />
-      <Hero />
-      <About />
-      <Education />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
+
+      <main>
+        <Hero />
+        <About />
+        <Education />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+
       <Footer />
+      <BackToTop />
     </div>
   );
 }
