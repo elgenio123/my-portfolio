@@ -24,7 +24,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold tracking-tight text-fg">Genie Tchabet</h3>
             <p className="mt-3 max-w-sm text-pretty leading-relaxed text-fg-muted">
-              Data Scientist, Software Developer &amp; Researcher specializing in agentic AI, large
+              Data Scientist, Software Engineer &amp; Researcher specializing in agentic AI, large
               language models, and data-driven software.
             </p>
             <p className="mt-4 flex items-center gap-2 font-mono text-xs text-fg-subtle">

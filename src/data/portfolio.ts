@@ -4,7 +4,7 @@ export const experience: Experience[] = [
   {
     company: 'AIMS Research and Innovation Centre (RIC)',
     location: 'Kigali, Rwanda',
-    position: 'Software Developer Intern',
+    position: 'Software Engineer Intern',
     period: 'Jul 2026 – Present',
     arrangement: 'On-site',
     description:

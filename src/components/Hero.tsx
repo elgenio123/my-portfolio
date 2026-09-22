@@ -114,7 +114,7 @@ export default function Hero() {
                 <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-sm uppercase tracking-[0.18em] text-fg-muted sm:text-base lg:justify-start">
                   <span>Data Scientist</span>
                   <span aria-hidden="true" className="h-1 w-1 rounded-full bg-brand" />
-                  <span>Software Developer</span>
+                  <span>Software Engineer</span>
                   <span aria-hidden="true" className="h-1 w-1 rounded-full bg-brand" />
                   <span>Researcher</span>
                 </p>
